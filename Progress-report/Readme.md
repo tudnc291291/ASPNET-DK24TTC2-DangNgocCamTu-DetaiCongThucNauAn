@@ -17,7 +17,7 @@ Cài đặt môi trường phát triển ASP.NET và Docker
 
 ## ✅ Công việc đã hoàn thành
 # 1. Tạo Repository
-Tên repo: -APSNET-dk24ttc2-nguyenthanhlap-chiasekhoahoctructuyen
+Tên repo: -APSNET-DK24TTC2-DangNgocCamTu-DetaiCongThucNauAn
 
 Đã public repo trên GitHub để giảng viên và bạn bè có thể truy cập
 
@@ -25,7 +25,7 @@ Tên repo: -APSNET-dk24ttc2-nguyenthanhlap-chiasekhoahoctructuyen
 Đã thêm tài khoản antoni80doan@gmail.com làm Collaborator để giảng viên theo dõi tiến độ
 
 # 3. Cấu trúc thư mục đã thiết lập
--APSNET-dk24ttc2-nguyenthanhlap-chiasekhoahoctructuyen
+-APSNET-DK24TTC2-DangNgocCamTu-DetaiCongThucNauAn
 
 setup/: chứa các tệp cài đặt, hướng dẫn chạy chương trình.
 
