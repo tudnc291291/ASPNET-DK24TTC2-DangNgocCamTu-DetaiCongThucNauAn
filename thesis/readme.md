@@ -8,7 +8,7 @@
 - Email : tudnc291291@tvu-onschool.edu.vn
 - Phone : 0987 942 762
 - Lớp: DK24TTC2
-- Giảng viên hướng dẫn: Thầy Đoàn Phước Miền
+- Giảng viên hướng dẫn: TS Đoàn Phước Miền
 
 ## Mô tả đồ án
 Website công thức nấu ăn của chúng tôi là nơi hội tụ hàng ngàn món ngon từ khắp nơi trên thế giới, được tuyển chọn kỹ lưỡng và trình bày dễ hiểu, giúp bạn tự tin vào bếp dù là người mới bắt đầu hay đầu bếp chuyên nghiệp.
