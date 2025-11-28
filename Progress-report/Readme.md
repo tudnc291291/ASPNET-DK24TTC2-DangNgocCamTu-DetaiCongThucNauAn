@@ -17,7 +17,7 @@ Cài đặt môi trường phát triển ASP.NET và Docker
 
 ## ✅ Công việc đã hoàn thành
 # 1. Tạo Repository
-Tên repo: -ASPNET-DK24TTC2-DangNgocCamTu-DetaiCongThucNauAn
+Tên repo: ASPNET-DK24TTC2-DangNgocCamTu-DetaiCongThucNauAn
 
 Đã public repo trên GitHub để giảng viên và bạn bè có thể truy cập
 
