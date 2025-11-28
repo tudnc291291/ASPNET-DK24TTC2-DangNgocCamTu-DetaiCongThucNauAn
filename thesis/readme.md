@@ -1,6 +1,6 @@
 
 # -APSNET-dk24ttc2-dangngoccamtu-congthucnauan
-# Đề tài: Xây dựng website chia sẻ khóa học trực tuyến
+# Đề tài: Xây dựng website chia sẻ công thức nấu ăn
 
 ## Thông tin sinh viên
 - Họ tên: Đặng Ngọc Cẩm Tú  
