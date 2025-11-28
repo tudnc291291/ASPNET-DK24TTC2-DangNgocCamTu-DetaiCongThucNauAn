@@ -1,0 +1,72 @@
+﻿@model X.PagedList.IPagedList<CookingWebsite.Models.CongThuc>
+@using X.PagedList.Mvc.Core
+
+@{
+    ViewData["Title"] = "Công Thức Nấu Ăn";
+}
+
+<!-- Hero Section -->
+<div class="hero-section">
+    <div class="container">
+        <div class="hero-content">
+            <h1 class="hero-title">🍳 Khám Phá Thế Giới Ẩm Thực</h1>
+            <p class="hero-subtitle">Hàng ngàn công thức nấu ăn ngon, dễ làm đang chờ bạn khám phá</p>
+        </div>
+    </div>
+</div>
+
+<div class="container mt-5 mb-5">
+    <div class="row">
+        <div class="col-lg-3 col-md-4 mb-4">
+            <div class="category-sidebar">
+                <h4>Danh Mục</h4>
+                @await Component.InvokeAsync("LoaiMonAn")
+            </div>
+        </div>
+        <div class="col-lg-9 col-md-8">
+            <div class="recipes-header">
+                <h2 class="mb-4">Tất Cả Công Thức</h2>
+                <p class="recipes-count">Tìm thấy <strong>@Model.TotalItemCount</strong> công thức</p>
+            </div>
+            
+            <div class="row recipes-grid">
+                @foreach (var recipe in Model)
+                {
+                    <div class="col-xl-4 col-lg-6 col-md-12 mb-4">
+                        <div class="card recipe-card">
+                            @if (!string.IsNullOrEmpty(recipe.Anh))
+                            {
+                                <div class="card-img-wrapper">
+                                    <img src="~/Images_NAUAN/@recipe.Anh" class="card-img-top" alt="@recipe.TenCongThuc">
+                                </div>
+                            }
+                            <div class="card-body">
+                                <h5 class="card-title">@recipe.TenCongThuc</h5>
+                                <p class="card-text">@(recipe.MoTa?.Length > 100 ? recipe.MoTa.Substring(0, 100) + "..." : recipe.MoTa)</p>
+                                <div class="recipe-meta">
+                                    @if (recipe.ThoiGianChuanBi.HasValue)
+                                    {
+                                        <span class="meta-item">⏱️ @recipe.ThoiGianChuanBi phút</span>
+                                    }
+                                    @if (recipe.TongThoiGianNau.HasValue)
+                                    {
+                                        <span class="meta-item">🔥 @recipe.TongThoiGianNau phút</span>
+                                    }
+                                    @if (recipe.PhucVu.HasValue)
+                                    {
+                                        <span class="meta-item">👥 @recipe.PhucVu người</span>
+                                    }
+                                </div>
+                                <a href="@Url.Action("RecipeDetail", "Home", new { id = recipe.MaCongThuc })" class="btn btn-primary w-100 mt-3">Xem Công Thức</a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+
+            <div class="pagination justify-content-center mt-5">
+                @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }))
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,33 @@
+@model CookingWebsite.Models.CongThuc
+
+@{
+    ViewData["Title"] = "Delete Recipe";
+}
+
+<h2>Xóa Công Thức</h2>
+
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">@TempData["ErrorMessage"]</div>
+}
+
+<h3>Bạn có chắc chắn muốn xóa công thức này?</h3>
+<div>
+    <h4>@Model.TenCongThuc</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">Mô tả</dt>
+        <dd class="col-sm-10">@Model.MoTa</dd>
+        <dt class="col-sm-2">Tác giả</dt>
+        <dd class="col-sm-10">@Model.TacGia</dd>
+    </dl>
+
+    <form asp-action="Delete" method="post">
+        <input type="hidden" asp-for="MaCongThuc" />
+        <button type="submit" class="btn btn-danger">Xóa</button>
+        <a asp-action="Index" class="btn btn-secondary">Hủy</a>
+    </form>
+</div>
+
+
+

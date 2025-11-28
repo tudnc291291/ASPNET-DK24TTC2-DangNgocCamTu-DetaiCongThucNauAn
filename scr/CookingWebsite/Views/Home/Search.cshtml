@@ -1,0 +1,45 @@
+@model X.PagedList.IPagedList<CookingWebsite.Models.CongThuc>
+@using X.PagedList.Mvc.Core
+
+@{
+    ViewData["Title"] = "Kết quả tìm kiếm";
+}
+
+<div class="container mt-4">
+    <h2>Kết quả tìm kiếm cho "@ViewBag.SearchText"</h2>
+    
+    @if (Model.Any())
+    {
+        <div class="row">
+            @foreach (var recipe in Model)
+            {
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        @if (!string.IsNullOrEmpty(recipe.Anh))
+                        {
+                            <img src="~/Images_NAUAN/@recipe.Anh" class="card-img-top" alt="@recipe.TenCongThuc" style="height: 200px; object-fit: cover;">
+                        }
+                        <div class="card-body">
+                            <h5 class="card-title">@recipe.TenCongThuc</h5>
+                            <p class="card-text">@(recipe.MoTa?.Length > 100 ? recipe.MoTa.Substring(0, 100) + "..." : recipe.MoTa)</p>
+                            <a href="@Url.Action("RecipeDetail", "Home", new { id = recipe.MaCongThuc })" class="btn btn-primary">Xem Công Thức</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+
+        <div class="pagination justify-content-center">
+            @Html.PagedListPager(Model, page => Url.Action("Search", new { searchText = ViewBag.SearchText, page = page }))
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-info">
+            Không tìm thấy công thức nào phù hợp với "@ViewBag.SearchText"
+        </div>
+    }
+</div>
+
+
+

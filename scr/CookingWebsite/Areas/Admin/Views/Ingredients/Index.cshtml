@@ -1,0 +1,49 @@
+@model IEnumerable<CookingWebsite.Models.NguyenLieu>
+
+@{
+    ViewData["Title"] = "Manage Ingredients";
+}
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2>Quản Lý Nguyên Liệu</h2>
+        <a asp-action="Create" class="btn btn-primary">Thêm Nguyên Liệu Mới</a>
+    </div>
+
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger">@TempData["ErrorMessage"]</div>
+    }
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Tên</th>
+                <th>Danh Mục</th>
+                <th>Số Lượng</th>
+                <th>Đơn Vị</th>
+                <th>Hành Động</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var ingredient in Model)
+            {
+                <tr>
+                    <td>@ingredient.MaNguyenLieu</td>
+                    <td>@ingredient.TenNguyenLieu</td>
+                    <td>@ingredient.LoaiNguyenLieu?.TenLoai</td>
+                    <td>@ingredient.SoLuong</td>
+                    <td>@ingredient.DonVi</td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@ingredient.MaNguyenLieu" class="btn btn-sm btn-warning">Sửa</a>
+                        <a asp-action="Delete" asp-route-id="@ingredient.MaNguyenLieu" class="btn btn-sm btn-danger">Xóa</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+
+

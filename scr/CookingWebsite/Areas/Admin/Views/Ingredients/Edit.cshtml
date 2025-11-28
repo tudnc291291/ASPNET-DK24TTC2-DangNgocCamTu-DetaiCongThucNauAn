@@ -1,0 +1,52 @@
+@model CookingWebsite.Models.NguyenLieu
+
+@{
+    ViewData["Title"] = "Edit Ingredient";
+}
+
+<h2>Sửa Nguyên Liệu</h2>
+
+<form asp-action="Edit" method="post">
+    <input type="hidden" asp-for="MaNguyenLieu" />
+    
+    <div class="form-group mb-3">
+        <label asp-for="TenNguyenLieu" class="form-label">Tên Nguyên Liệu</label>
+        <input asp-for="TenNguyenLieu" class="form-control" />
+        <span asp-validation-for="TenNguyenLieu" class="text-danger"></span>
+    </div>
+
+    <div class="form-group mb-3">
+        <label asp-for="MaLoaiNguyenLieu" class="form-label">Danh Mục</label>
+        <select asp-for="MaLoaiNguyenLieu" class="form-control" asp-items="ViewBag.LoaiNguyenLieus">
+            <option value="">-- Chọn Danh Mục --</option>
+        </select>
+        <span asp-validation-for="MaLoaiNguyenLieu" class="text-danger"></span>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group mb-3">
+                <label asp-for="SoLuong" class="form-label">Số Lượng</label>
+                <input asp-for="SoLuong" class="form-control" type="number" step="0.1" />
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group mb-3">
+                <label asp-for="DonVi" class="form-label">Đơn Vị</label>
+                <input asp-for="DonVi" class="form-control" />
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Lưu</button>
+        <a asp-action="Index" class="btn btn-secondary">Hủy</a>
+    </div>
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+
+

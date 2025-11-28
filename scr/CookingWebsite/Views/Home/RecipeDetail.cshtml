@@ -1,0 +1,94 @@
+@model CookingWebsite.Models.CongThuc
+
+@{
+    ViewData["Title"] = Model.TenCongThuc;
+}
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-8">
+            <h1>@Model.TenCongThuc</h1>
+            
+            @if (!string.IsNullOrEmpty(Model.AnhChiTiet))
+            {
+                <img src="~/Images_NAUAN/@Model.AnhChiTiet" class="img-fluid mb-4" alt="@Model.TenCongThuc">
+            }
+
+            <div class="mb-4">
+                <h4>Mô tả</h4>
+                <p>@Model.MoTa</p>
+            </div>
+
+            <div class="row mb-4">
+                @if (Model.ThoiGianChuanBi.HasValue)
+                {
+                    <div class="col-md-3">
+                        <strong>Thời gian chuẩn bị:</strong><br>
+                        @Model.ThoiGianChuanBi phút
+                    </div>
+                }
+                @if (Model.TongThoiGianNau.HasValue)
+                {
+                    <div class="col-md-3">
+                        <strong>Thời gian nấu:</strong><br>
+                        @Model.TongThoiGianNau phút
+                    </div>
+                }
+                @if (Model.PhucVu.HasValue)
+                {
+                    <div class="col-md-3">
+                        <strong>Khẩu phần:</strong><br>
+                        @Model.PhucVu người
+                    </div>
+                }
+                @if (!string.IsNullOrEmpty(Model.TacGia))
+                {
+                    <div class="col-md-3">
+                        <strong>Tác giả:</strong><br>
+                        @Model.TacGia
+                    </div>
+                }
+            </div>
+
+            <div class="mb-4">
+                <h4>Nguyên liệu</h4>
+                <ul class="list-group">
+                    @foreach (var ingredient in Model.CongThucNguyenLieus)
+                    {
+                        <li class="list-group-item">
+                            @if (ingredient.NguyenLieu?.SoLuong.HasValue == true)
+                            {
+                                <span>@ingredient.NguyenLieu.SoLuong</span>
+                            }
+                            @if (!string.IsNullOrEmpty(ingredient.NguyenLieu?.DonVi))
+                            {
+                                <span>@ingredient.NguyenLieu.DonVi</span>
+                            }
+                            <strong>@ingredient.NguyenLieu?.TenNguyenLieu</strong>
+                            @if (ingredient.NguyenLieu?.LoaiNguyenLieu != null)
+                            {
+                                <span class="badge bg-secondary">@ingredient.NguyenLieu.LoaiNguyenLieu.TenLoai</span>
+                            }
+                        </li>
+                    }
+                </ul>
+            </div>
+
+            <div class="mb-4">
+                <h4>Các bước thực hiện</h4>
+                <ol>
+                    @foreach (var step in Model.CacBuocNaus.OrderBy(s => s.BuocThucHien))
+                    {
+                        <li class="mb-3">
+                            <strong>Bước @step.BuocThucHien:</strong>
+                            <p>@step.HuongDan</p>
+                        </li>
+                    }
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

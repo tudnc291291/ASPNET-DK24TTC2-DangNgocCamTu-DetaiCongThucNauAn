@@ -1,0 +1,35 @@
+@model CookingWebsite.Models.NguyenLieu
+
+@{
+    ViewData["Title"] = "Delete Ingredient";
+}
+
+<h2>Xóa Nguyên Liệu</h2>
+
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">@TempData["ErrorMessage"]</div>
+}
+
+<h3>Bạn có chắc chắn muốn xóa nguyên liệu này?</h3>
+<div>
+    <h4>@Model.TenNguyenLieu</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">Danh mục</dt>
+        <dd class="col-sm-10">@Model.LoaiNguyenLieu?.TenLoai</dd>
+        <dt class="col-sm-2">Số lượng</dt>
+        <dd class="col-sm-10">@Model.SoLuong</dd>
+        <dt class="col-sm-2">Đơn vị</dt>
+        <dd class="col-sm-10">@Model.DonVi</dd>
+    </dl>
+
+    <form asp-action="Delete" method="post">
+        <input type="hidden" asp-for="MaNguyenLieu" />
+        <button type="submit" class="btn btn-danger">Xóa</button>
+        <a asp-action="Index" class="btn btn-secondary">Hủy</a>
+    </form>
+</div>
+
+
+

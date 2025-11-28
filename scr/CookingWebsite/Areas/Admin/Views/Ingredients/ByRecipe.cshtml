@@ -1,0 +1,73 @@
+@model IEnumerable<CookingWebsite.Models.CongThucNguyenLieu>
+
+@{
+    ViewData["Title"] = "Recipe Ingredients - " + ViewBag.RecipeName;
+}
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2>Ingredients for: @ViewBag.RecipeName</h2>
+    </div>
+
+    <a asp-controller="Recipes" asp-action="Index" class="btn btn-secondary mb-3">Back to Recipes</a>
+
+    <div class="row">
+        <div class="col-md-8">
+            <h4>Current Ingredients</h4>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Ingredient</th>
+                        <th>Category</th>
+                        <th>Quantity</th>
+                        <th>Unit</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.NguyenLieu?.TenNguyenLieu</td>
+                            <td>@item.NguyenLieu?.LoaiNguyenLieu?.TenLoai</td>
+                            <td>@item.NguyenLieu?.SoLuong</td>
+                            <td>@item.NguyenLieu?.DonVi</td>
+                            <td>
+                                <form asp-action="RemoveFromRecipe" method="post" class="d-inline">
+                                    <input type="hidden" name="recipeId" value="@ViewBag.RecipeId" />
+                                    <input type="hidden" name="id" value="@item.IdCongThucNguyenLieu" />
+                                    <button type="submit" class="btn btn-sm btn-danger">Remove</button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <div class="col-md-4">
+            <h4>Add Ingredient</h4>
+            <div class="list-group">
+                @foreach (var ingredient in ViewBag.AllIngredients as List<CookingWebsite.Models.NguyenLieu>)
+                {
+                    <div class="list-group-item">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <strong>@ingredient.TenNguyenLieu</strong>
+                                <br>
+                                <small>@ingredient.LoaiNguyenLieu?.TenLoai</small>
+                            </div>
+                            <form asp-action="AddToRecipe" method="post" class="d-inline">
+                                <input type="hidden" name="recipeId" value="@ViewBag.RecipeId" />
+                                <input type="hidden" name="ingredientId" value="@ingredient.MaNguyenLieu" />
+                                <button type="submit" class="btn btn-sm btn-primary">Add</button>
+                            </form>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

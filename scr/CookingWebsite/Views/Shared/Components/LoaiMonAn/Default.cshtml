@@ -1,0 +1,15 @@
+@model IEnumerable<CookingWebsite.Models.LoaiMonAn>
+
+<ul class="list-group">
+    @foreach (var category in Model)
+    {
+        <li class="list-group-item">
+            <a href="@Url.Action("RecipesByCategory", "Home", new { categoryId = category.MaLoaiMonAn })">
+                @category.TenLoaiMonAn
+            </a>
+        </li>
+    }
+</ul>
+
+
+

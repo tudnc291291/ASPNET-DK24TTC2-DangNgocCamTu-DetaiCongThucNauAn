@@ -1,0 +1,66 @@
+@{
+    ViewData["Title"] = "Admin Dashboard";
+}
+
+<div class="container mt-4">
+    <h1>Bảng Điều Khiển Quản Trị</h1>
+    
+    <div class="row mt-4">
+        <div class="col-md-3">
+            <div class="card text-white bg-primary mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">Tổng Số Công Thức</h5>
+                    <h2>@ViewBag.TotalRecipes</h2>
+                    <a href="@Url.Action("Index", "Recipes")" class="text-white">Quản Lý Công Thức</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card text-white bg-success mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">Danh Mục Công Thức</h5>
+                    <h2>@ViewBag.TotalCategories</h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card text-white bg-info mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">Tổng Số Nguyên Liệu</h5>
+                    <h2>@ViewBag.TotalIngredients</h2>
+                    <a href="@Url.Action("Index", "Ingredients")" class="text-white">Quản Lý Nguyên Liệu</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card text-white bg-warning mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">Danh Mục Nguyên Liệu</h5>
+                    <h2>@ViewBag.TotalIngredientCategories</h2>
+                    <a href="@Url.Action("Index", "IngredientCategories")" class="text-white">Quản Lý Danh Mục</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="mt-4">
+        <h3>Thao Tác Nhanh</h3>
+        <div class="list-group">
+            <a href="@Url.Action("Index", "Recipes")" class="list-group-item list-group-item-action">
+                <h5>Quản Lý Công Thức</h5>
+                <p class="mb-1">Thêm, sửa, hoặc xóa công thức nấu ăn</p>
+            </a>
+            <a href="@Url.Action("Index", "Ingredients")" class="list-group-item list-group-item-action">
+                <h5>Quản Lý Nguyên Liệu</h5>
+                <p class="mb-1">Thêm, sửa, hoặc xóa nguyên liệu</p>
+            </a>
+            <a href="@Url.Action("Index", "IngredientCategories")" class="list-group-item list-group-item-action">
+                <h5>Quản Lý Danh Mục Nguyên Liệu</h5>
+                <p class="mb-1">Thêm, sửa, hoặc xóa danh mục nguyên liệu</p>
+            </a>
+        </div>
+    </div>
+</div>
+
+
+

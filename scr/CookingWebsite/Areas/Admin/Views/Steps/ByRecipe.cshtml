@@ -1,0 +1,40 @@
+@model IEnumerable<CookingWebsite.Models.CacBuocNau>
+
+@{
+    ViewData["Title"] = "Cooking Steps - " + ViewBag.RecipeName;
+}
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2>Các Bước Thực Hiện: @ViewBag.RecipeName</h2>
+        <a asp-action="Create" asp-route-recipeId="@ViewBag.RecipeId" class="btn btn-primary">Thêm Bước Mới</a>
+    </div>
+
+    <a asp-controller="Recipes" asp-action="Index" class="btn btn-secondary mb-3">Quay lại danh sách công thức</a>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Bước Số</th>
+                <th>Hướng Dẫn</th>
+                <th>Hành Động</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var step in Model.OrderBy(s => s.BuocThucHien))
+            {
+                <tr>
+                    <td>@step.BuocThucHien</td>
+                    <td>@step.HuongDan</td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@step.MaBuoc" class="btn btn-sm btn-warning">Sửa</a>
+                        <a asp-action="Delete" asp-route-id="@step.MaBuoc" class="btn btn-sm btn-danger">Xóa</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+
+

@@ -1,0 +1,99 @@
+@model CookingWebsite.Models.CongThuc
+
+@{
+    ViewData["Title"] = "Edit Recipe";
+}
+
+<h2>Sửa Công Thức</h2>
+
+<form asp-action="Edit" method="post" enctype="multipart/form-data">
+    <input type="hidden" asp-for="MaCongThuc" />
+    
+    <div class="form-group mb-3">
+        <label asp-for="TenCongThuc" class="form-label">Tên Công Thức</label>
+        <input asp-for="TenCongThuc" class="form-control" />
+        <span asp-validation-for="TenCongThuc" class="text-danger"></span>
+    </div>
+
+    <div class="form-group mb-3">
+        <label asp-for="MoTa" class="form-label">Mô Tả</label>
+        <textarea asp-for="MoTa" class="form-control" rows="5"></textarea>
+        <span asp-validation-for="MoTa" class="text-danger"></span>
+    </div>
+
+    <div class="row">
+        <div class="col-md-3">
+            <div class="form-group mb-3">
+                <label asp-for="ThoiGianChuanBi" class="form-label">Thời Gian Chuẩn Bị (phút)</label>
+                <input asp-for="ThoiGianChuanBi" class="form-control" type="number" />
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group mb-3">
+                <label asp-for="TongThoiGianNau" class="form-label">Thời Gian Nấu (phút)</label>
+                <input asp-for="TongThoiGianNau" class="form-control" type="number" />
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group mb-3">
+                <label asp-for="PhucVu" class="form-label">Khẩu Phần</label>
+                <input asp-for="PhucVu" class="form-control" type="number" />
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group mb-3">
+                <label asp-for="TacGia" class="form-label">Tác Giả</label>
+                <input asp-for="TacGia" class="form-control" />
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group mb-3">
+        <label class="form-label">Ảnh Đại Diện (để trống nếu giữ nguyên)</label>
+        <input type="file" name="anh" class="form-control" accept="image/*" />
+        @if (!string.IsNullOrEmpty(Model.Anh))
+        {
+            <small class="form-text text-muted">Hiện tại: @Model.Anh</small>
+        }
+    </div>
+
+    <div class="form-group mb-3">
+        <label class="form-label">Ảnh Chi Tiết (để trống nếu giữ nguyên)</label>
+        <input type="file" name="anhChiTiet" class="form-control" accept="image/*" />
+        @if (!string.IsNullOrEmpty(Model.AnhChiTiet))
+        {
+            <small class="form-text text-muted">Hiện tại: @Model.AnhChiTiet</small>
+        }
+    </div>
+
+    <div class="form-group mb-3">
+        <label class="form-label">Danh Mục</label>
+        <div class="row">
+            @foreach (var category in ViewBag.LoaiMonAns as List<CookingWebsite.Models.LoaiMonAn>)
+            {
+                <div class="col-md-3">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="selectedCategories" value="@category.MaLoaiMonAn" 
+                               id="cat_@category.MaLoaiMonAn" 
+                               @((ViewBag.SelectedCategories as List<int>)?.Contains(category.MaLoaiMonAn) == true ? "checked" : "")>
+                        <label class="form-check-label" for="cat_@category.MaLoaiMonAn">
+                            @category.TenLoaiMonAn
+                        </label>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Lưu</button>
+        <a asp-action="Index" class="btn btn-secondary">Hủy</a>
+    </div>
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+
+

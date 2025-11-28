@@ -1,0 +1,59 @@
+@model X.PagedList.IPagedList<CookingWebsite.Models.CongThuc>
+@using X.PagedList.Mvc.Core
+
+@{
+    ViewData["Title"] = "Manage Recipes";
+}
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2>Quản Lý Công Thức</h2>
+        <a asp-action="Create" class="btn btn-primary">Thêm Công Thức Mới</a>
+    </div>
+
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger">@TempData["ErrorMessage"]</div>
+    }
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Tên</th>
+                <th>Tác Giả</th>
+                <th>Chuẩn Bị</th>
+                <th>Nấu</th>
+                <th>Khẩu Phần</th>
+                <th>Hành Động</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var recipe in Model)
+            {
+                <tr>
+                    <td>@recipe.MaCongThuc</td>
+                    <td>@recipe.TenCongThuc</td>
+                    <td>@recipe.TacGia</td>
+                    <td>@(recipe.ThoiGianChuanBi?.ToString() ?? "N/A") phút</td>
+                    <td>@(recipe.TongThoiGianNau?.ToString() ?? "N/A") phút</td>
+                    <td>@(recipe.PhucVu?.ToString() ?? "N/A")</td>
+                    <td>
+                        <a asp-action="Details" asp-route-id="@recipe.MaCongThuc" class="btn btn-sm btn-info">Chi Tiết</a>
+                        <a asp-action="Edit" asp-route-id="@recipe.MaCongThuc" class="btn btn-sm btn-warning">Sửa</a>
+                        <a asp-action="Delete" asp-route-id="@recipe.MaCongThuc" class="btn btn-sm btn-danger">Xóa</a>
+                        <a asp-controller="Steps" asp-action="ByRecipe" asp-route-recipeId="@recipe.MaCongThuc" class="btn btn-sm btn-secondary">Các Bước</a>
+                        <a asp-controller="Ingredients" asp-action="ByRecipe" asp-route-recipeId="@recipe.MaCongThuc" class="btn btn-sm btn-secondary">Nguyên Liệu</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <div class="pagination justify-content-center">
+        @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }))
+    </div>
+</div>
+
+
+
